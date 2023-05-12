@@ -1,34 +1,46 @@
+var typed = new Typed('.type', {
+  strings: ['Sponsors', 'Organizors', 'Students', 'Events'],
+  typeSpeed: 110,
+  backSpeed: 75,
+  loop: false,
+});
 
-var typed=new Typed(".type",{
-  strings:["Sponsors","Organizors","Students","Events"],
-  typeSpeed:110,
-  backSpeed:75,
-  loop:false
-})
+let formBtn = document.querySelector('#login-btn');
+let loginform = document.querySelector('.login-form-container');
+let formClose = document.querySelector('#form-close');
+formBtn.addEventListener('click', () => {
+  loginform.classList.add('active');
+});
+formClose.addEventListener('click', () => {
+  loginform.classList.remove('active');
+});
 
-let formBtn=document.querySelector('#login-btn');
-let loginform=document.querySelector('.login-form-container');
-let formClose=document.querySelector('#form-close');
-formBtn.addEventListener('click',()=>{
-    loginform.classList.add('active');
-})
-formClose.addEventListener('click',()=>{
-    loginform.classList.remove('active');
-})
+// !-- Start of Register Content ---!
+let registerBtn = document.querySelector('#register-btn');
+let registerForm = document.querySelector('.register-form-container');
+let registerClose = document.querySelector('#register-container-close');
+registerBtn.addEventListener('click', () => {
+  loginform.classList.remove('active');
+  registerForm.classList.add('active');
+});
+registerClose.addEventListener('click', () => {
+  registerForm.classList.remove('active');
+});
+// !-- End Of Register Content ---!
 document.onscroll = () => {
-    if(window.scrollY > 0){
-        document.querySelector('.header') .classList.add('active');
-    } else{
-        document.querySelector('.header') .classList.remove('active');
-    }
+  if (window.scrollY > 0) {
+    document.querySelector('.header').classList.add('active');
+  } else {
+    document.querySelector('.header').classList.remove('active');
+  }
 };
 
 document.onload = () => {
-    if(window.scrollY > 0){
-        document.querySelector('.header') .classList.add('active');
-    } else{
-        document.querySelector('.header') .classList.remove('active');
-    }
+  if (window.scrollY > 0) {
+    document.querySelector('.header').classList.add('active');
+  } else {
+    document.querySelector('.header').classList.remove('active');
+  }
 };
 
 const navbar = document.querySelector('.header .navbar');
@@ -57,25 +69,21 @@ document.onload = () => {
   }
 };
 
-let themetoggler =document.querySelector('.theme-toggler');
+let themetoggler = document.querySelector('.theme-toggler');
 let togglebtn = document.querySelector('.toggle-btn');
 
-togglebtn.onclick = () =>{
+togglebtn.onclick = () => {
   themetoggler.classList.toggle('active');
-}
+};
 
-window.onscroll =() => {
-
+window.onscroll = () => {
   menu.classList.remove('fa-times');
   navbar.classList.remove('active');
   themetoggler.classList.remove('active');
-}
-document.querySelectorAll('.theme-toggler .theme-btn').forEach(btn =>{
-btn.onclick= () =>{
-  let color = btn.style.background;
-  document.querySelector(':root').style.setProperty('--main-color',color);
-}})
-
-
-
-
+};
+document.querySelectorAll('.theme-toggler .theme-btn').forEach((btn) => {
+  btn.onclick = () => {
+    let color = btn.style.background;
+    document.querySelector(':root').style.setProperty('--main-color', color);
+  };
+});
