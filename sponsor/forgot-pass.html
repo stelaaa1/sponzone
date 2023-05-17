@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="password-form-container">
+        <i class="fas fa-times" id="form-close"></i>
+        <form id="forgot-password" action="feed.html">
+          <h3>Reset Password</h3>
+          <input type="name" id="user-name" class="box" placeholder="Enter Your Username" />
+          <input type="password" id="newpassword" class="box" placeholder="Enter New password" />
+          <input type="password" id="repassword" class="box" placeholder="Re-Enter password" />
+          <input type="submit" value="change-now" class="btn" />
+        </form>
+      </div>
+</body>
+</html>
+
+<script>
+    //for login request
+const form=document.getElementById('forgot-password');//getting id from html
+form.addEventListener('submit',pass)//onclick submit login func starts
+
+async function pass(event)
+{
+    
+  event.preventDefault()
+  const username=document.getElementById('user-name').value;
+  const newpassword=document.getElementById('newpassword').value;
+  const cpassword=document.getElementById('repassword').value;
+  //taking values from id=loginname and password
+  if(newpassword===cpassword){
+  const result=await fetch('/api/forgot-password',{
+    method:'POST',
+    headers:{
+      'Content-Type':'application/json'
+    },
+    body:JSON.stringify({
+      username,
+      newpassword,
+      //LocalStorage provides a way to store& fetch data in the browser
+      // token:localStorage.getItem('token')
+    })
+  }).then((res)=>res.json())
+
+
+  if(result.status==='ok')
+    { 
+     
+      //result.data provides res.json from /api/login
+      alert("password changed")
+    }
+    else{
+      alert(result.error);//result stores the json value returned in server
+    }
+
+}
+else
+{
+    alert("Passwords dosen't match")
+}
+}
+</script>
