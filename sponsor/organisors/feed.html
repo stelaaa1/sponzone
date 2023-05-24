@@ -69,8 +69,8 @@
           <img src="images/cover-pic.png" width="100%" />
           <div class="sidebar-profile-info">
             <img src="images/user-1.png" />
-            <h1>Rayan Walton</h1>
-            <h3>Web Developer at Microsoft</h3>
+            <h1 id="name">Rayan Walton</h1>
+            <h3 id="email">Web Developer at Microsoft</h3>
             <ul>
               <li>Your profile views<span>52</span></li>
               <!-- <li>Your post views<span>810</span></li> -->
@@ -102,9 +102,6 @@
         </div>
       </div>
       <div class="main-content">
-        <div class="create-post-input">
-          <img src="images/user-1.png" />
-        </div>
         <section class="modal hidden">
           <div class="flex">
             <!-- <img
@@ -120,7 +117,7 @@
             
             <form id="eventForm">
               <label for="eventName"><strong>Event Name:</strong> 
-              <input type="text" id="eventName" required /></label>
+              <input type="text" id="eventName" placeholder="Enter Event Name" autocomplete="off" required /></label>
 
               <label for="eventStartDate">Event Start Date:
               <div class="calendar">
@@ -136,18 +133,19 @@
                 type="text"
                 id="eventBrief"
                 placeholder="Enter Event Details within 50 words"
+                autocomplete="off"
                 minlength="10"
                 maxlength="50"
               />
               <label for="eventAddress">Event Address:
-              <input type="text" id="eventAddress" required /></label>
+              <input type="text" id="eventAddress" placeholder="Enter Event Address" autocomplete="off" required /></label>
               <label for="budget">Budget Estimation:
               <div class="rupee-input">
                 <span class="rupee-symbol">&#8377;</span>
-                <input type="number" id="budget" required /></label>
+                <input type="number" id="budget" placeholder="Enter Approximate Budget" autocomplete="off" required /></label>
               </div>
-
-              <input type="submit" value="Submit" />
+              <p><input type="submit" value="Submit" /></p>
+              
             </form>
           </div>
         </section>
@@ -185,7 +183,7 @@
           <a href="#" class="read-more-link">Read more</a>
         </div>
 
-        <div class="sidebar-ad">
+        <!-- <div class="sidebar-ad">
           <small>Ad &middot; &middot; &middot;</small>
           <p>Get access to premium plans</p>
           <div>
@@ -201,7 +199,21 @@
     <div class="copyright-msg">
         <img src="/sponsor/image11.jpg">
         <p>Sponzone &#169; 2022. All rights reserved</p>
-    </div></footer>
+    </div></footer> -->
+
+    <div class="sidebar-ad">
+        
+         
+          <iframe width="250" height="300" src="https://www.youtube-nocookie.com/embed/d77TQupCENc?controls=0"  frameborder="0" allow="accelerometer; autoplay; 
+          encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+        </div> </div>
+      </div>
+        <hr>
+<footer>
+    <div class="copyright-msg">
+        <!-- <img src="/sponsor/image11.jpg"> -->
+        <p>Sponzone &#169; 2022. All rights reserved</p>
      
     <script src="feed.js"></script>
   </body>

@@ -14,6 +14,20 @@ const EventsSchema = new Schema({
     type: String,
     required: true,
   },
+  eventStartDate: {
+    type: String,
+    format: Date,
+    required: true,
+  },
+  eventEndDate: {
+    type: String,
+    format: Date,
+    required: true,
+  },
+  days: {
+    type: Number,
+    required: true,
+  },
   eventAddress: {
     type: String,
     required: true,
