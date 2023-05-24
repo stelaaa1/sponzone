@@ -1,171 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equip="X-UA-Compatible" content="IE-edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equip="X-UA-Compatible" content="IE-edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>Sponzone/BrandsProfiile</title>
-    <link rel="stylesheet" href="home.css">
-    <script src="home.js"></script> <!-- Moved the script tag here -->
-</head>
-<body>
+    <link rel="stylesheet" href="home.css" />
+    <script src="home.js"></script>
+    <!-- Moved the script tag here -->
+  </head>
+  <body>
     <nav class="navbar">
-        <div class="navbar-left">
-            <a href="index.html"   class="logo"><span><strong>SponZone</strong> &nbsp;</span></a>
+      <div class="navbar-left">
+        <a href="index.html" class="logo"
+          ><span><strong>SponZone</strong> &nbsp;</span></a
+        >
+      </div>
+      <div class="navbar-center">
+        <ul>
+          <li>
+            <a href="#" class="active-link"
+              ><img src="images/home.png" /><span>Home</span></a
+            >
+          </li>
+          <li>
+            <a href="#"
+              ><img src="images/network.png" /><span> Network</span></a
+            >
+          </li>
+          <li>
+            <a href="#"
+              ><img src="images/notification.png" /><span>Notification</span></a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="navbar-right">
+        <div class="online">
+          <div class="profile-dropdown">
+            <img
+              src="images/user-1.png"
+              class="nav-profile-img"
+              id="profile-pic"
+            />
+            <a href="/sponsor/index.html"><img src="" /><span>Logout</span></a>
+          </div>
         </div>
-        <div class="navbar-center">
-            <ul>
-                <li><a href="#" class="active-link"><img src="images/home.png"><span>Home</span></a></li>
-                <li><a href="#"><img src="images/network.png"><span> Network</span></a></li>
-                <li><a href="#"><img src="images/jobs.png"><span>Requests</span></a></li>
-                <li><a href="#"><img src="images/notification.png"><span>Notification</span></a></li>
-            
-            </ul>
-        </div>
-        <div class="navbar-right">
-            <div class="online">
-                <div class="profile-dropdown">
-                    <img src="images/user-1.png" class="nav-profile-img" id="profile-pic">
-                    <a href="/sponsor/index.html"><img src=""><span>Logout</span></a>
-                
-                </div>
-            </div>
-        </div>
-    </nav>    
+      </div>
+    </nav>
     <!-- navbar closed -->
-<!-- navbar closed -->
+    <!-- navbar closed -->
 
-
-<div class="container">
-  <div class="left-sidebar">
-      <div class="sidebar-profile-box">
-          <img src="images/cover-pic.png" width="100%">
+    <div class="container">
+      <div class="left-sidebar">
+        <div class="sidebar-profile-box">
+          <img src="images/cover-pic.png" width="100%" />
           <div class="sidebar-profile-info">
-              <img src="images/bee.png">
-              <h1>CodeSkool</h1>
-              <h3>Brand</h3>
+            <img src="images/bee.png" />
+            <h1 id="name">CodeSkool</h1>
+            <h3 id="email">Brand</h3>
 
-              <ul>
-                  <li>Your profile views<span>52</span></li>
-                  <!-- <li>Your post views<span>810</span></li> -->
-                  <!-- <li>Your connection<span>205</span></li> -->
-              </ul>
+            <ul>
+              <li>Your profile views<span>52</span></li>
+              <!-- <li>Your post views<span>810</span></li> -->
+              <!-- <li>Your connection<span>205</span></li> -->
+            </ul>
           </div>
           <div class="sidebar-profile-link">
-              <a href="#"><img src="images/items.png">Website link</a>
-              <!-- <a href="#"><img src="images/premium.png">Try Premium</a> -->
+            <a href="#"><img src="images/items.png" />Website link</a>
+            <!-- <a href="#"><img src="images/premium.png">Try Premium</a> -->
           </div>
-      </div>
-      <div class="sidebar-activity">
+        </div>
+        <div class="sidebar-activity">
           <!-- <h3>BRANDS WE'VE WORKED WITH</h3>
           <a href="#"><img src="images/coke.png">
           <img src="images/mivi.jpg"></a>
           <a href="#"><img src="images/dominos.png"><img src="images/fbb.png"></a> -->
 
           <h3>ORGANISERS WE'VE WORKED WITH</h3>
-          <a href="http://www.iitkgp.ac.in/"><img src="images/iit.png">IIT KGP</a>
-          <a href="https://www.technoindiagroup.com/"><img src="images/techno.png">Techno India Group</a>
+          <a href="http://www.iitkgp.ac.in/"
+            ><img src="images/iit.png" />IIT KGP</a
+          >
+          <a href="https://www.technoindiagroup.com/"
+            ><img src="images/techno.png" />Techno India Group</a
+          >
 
           <div class="discover-more-link">
-              <a href="#">Discover more</a>
+            <a href="#">Discover more</a>
           </div>
+        </div>
       </div>
-  </div>
-  <div class="main-content">
-    <div id="post-container">
+      <div id="post-container"></div>
 
+      <div class="right-sidebar">
+        <div class="sidebar-news">
+          <img src="images/more.png" class="info-icon" />
+          <h3>Trending Events</h3>
+          <a href="#">TagMango created a post</a>
+          <span>19h ago </span>
 
-    </div>
-    <div></div>
+          <a href="#">Techno India Group added an event</a>
+          <span>1d ago </span>
 
-    <div class="search-box">
-        <img src="images/search.png">
-        <input type="text" id="myInput" placeholder="Search">
-    </div>
-    <div class="post">
-        <div></div>
-        <div class="post-author">
-          <img src="images/fbb.png">
-          <div>
-            <h1 id="postTitle">Bengal Institute Of Technology</h1>
-            <small id="postTime">2 hours ago</small>
-          </div>
+          <a href="#">Gautam Adani is the world's third richest</a>
+          <span>12h ago &middot;4,205 readers</span>
+
+          <a href="#" class="read-more-link">Read more</a>
         </div>
-        <p id="postContent"></p>
-        <div class="buttons">
-          <button class="info-button">Info</button>
-          <button class="connect-button">Connect</button>
-        </div>
-            
-        <!-- <img src="images/post-image-1.png" width="100%"> -->
-       <hr><div>
-    </div>
-    
-       <div class="post-author">  <img src="images/coke.png">
-      
-        <div>
-            <h1>Chandigarh University</h1>
-            
-      <small>54 mins ago</small>
-        </div>
-    </div>
-      <div class="buttons">
-        <button class="info-button">Info</button>
-        <button class="connect-button">Connect</button>
-    </div>
-    <!-- <img src="images/coke.png" width="100%"> -->
-   <hr>
 
-   <div class="post-author">  <img src="images/user-3.png">
-      
-    <div>
-        <h1>Institute of Engineering and Management (IEM)</h1>
-        
-  <small>44 hours ago</small>
-    </div>
-</div>
-  <div class="buttons">
-    <button class="info-button">Info</button>
-    <button class="connect-button">Connect</button>
-</div>
-<!-- <img src="images/coke.png" width="100%"> -->
-<hr>
-
-
-    <!-- <div class="post">
-        <div class="post-content">
-          Post content goes here -->
-          <!-- <h2>Post Title</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec est vestibulum, cursus nulla nec, convallis nisl. Integer venenatis mi sed risus sollicitudin semper.</p>
-        </div>
-        <div class="post-buttons">
-          <button class="info-button">Info</button>
-          <button class="connect-button">Connect</button>
-        </div>
-      </div> -->
-
-          
-    </div>
-</div>
-<div class="right-sidebar">
-    <div class="sidebar-news">
-        <img src="images/more.png" class="info-icon">
-        <h3>Trending Events</h3>
-        <a href="#">TagMango created a post</a>
-        <span>19h ago </span>
-
-        <a href="#">Techno India Group added an event</a>
-        <span>1d ago </span>
-
-
-        <a href="#">Gautam Adani is the world's third richest</a>
-        <span>12h ago &middot;4,205 readers</span>
-
-        <a href="#" class="read-more-link">Read more</a>
-    </div>
-    
-
-    <!-- <div class="sidebar-ad">
+        <!-- <div class="sidebar-ad">
        
         <div>
             <img src="images/user-1.png">
@@ -174,22 +117,18 @@
         <b>Brand and demand in Xiaomi</b>
         <a href="#" class="ad-link">Learn More</a>
     </div> -->
-    <hr><div></div></div>
-</div>
-<hr>
-<footer>
-    <div class="copyright-msg">
-        <img src="images/logo.png">
+        <hr />
+        <div></div>
+      </div>
+    </div>
+    <hr />
+    <footer>
+      <div class="copyright-msg">
+        <img src="images/logo.png" />
         <p>Sponzone &#169; 2022. All rights reserved</p>
-    </div></footer>
+      </div>
+    </footer>
 
-
-
-<!-- JavaScript -->
-
-
-
-</body>
-
-
+    <!-- JavaScript -->
+  </body>
 </html>

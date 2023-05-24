@@ -3,6 +3,59 @@ const overlay = document.querySelector('.overlay');
 const openModalBtn = document.querySelector('.btn-open');
 const closeModalBtn = document.querySelector('.btn-close');
 
+var Name;
+var email;
+window.onload = async (event) => {
+  await fetch('/api/getuser', {
+    method: 'POST',
+    headers: {
+      //to send data as JSON
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      //atoken from saved LocalStorage data
+      atoken: localStorage.getItem('token'),
+    }),
+  })
+    .then((res) => res.json())
+    .then((res) => {
+      Name = res.username;
+      email = res.email;
+      document.getElementById('name').innerHTML = res.username;
+      document.getElementById('email').innerHTML = res.email;
+
+      fetch('/api/getAllEvents', {
+        method: 'GET',
+        headers: {
+          // To send data as JSON
+          'Content-Type': 'application/json',
+          // Include any other required headers
+        },
+      })
+        .then((response) => response.json())
+        .then((response) => {
+          displayData(response);
+        });
+    });
+};
+
+function fetchUserById(userId) {
+  let url = `http://localhost:9999/api/getUserById/${userId}`;
+
+  fetch(url, {
+    method: 'GET',
+    headers: {
+      // To send data as JSON
+      'Content-Type': 'application/json',
+      // Include any other required headers
+    },
+  })
+    .then((response) => response.json())
+    .then((response) => {
+      return response;
+    });
+}
+
 // close modal function
 const closeModal = function () {
   modal.classList.add('hidden');
@@ -69,6 +122,7 @@ function handleFormSubmit(event) {
   console.log('Event Name:', eventName);
   console.log('Event Start Date:', eventStartDate);
   console.log('Event End Date:', eventEndDate);
+  console.log('Number of days:', days);
   console.log('Event Brief:', eventBrief);
   console.log('Number of Event Days:', days);
   console.log('Event Address:', eventAddress);
@@ -79,7 +133,7 @@ function handleFormSubmit(event) {
 
 function fetchFeed() {
   // API endpoint URL
-  var apiUrl = 'https://random-data-api.com/api/address/random_address?size=1';
+  var apiUrl = 'http://localhost:9999/api/getAllEvents';
 
   // Make an API request
   fetch(apiUrl)
@@ -105,11 +159,16 @@ function displayData(data) {
   const days = calculateDays(eventStartDate, eventEndDate);
   const eventAddress = document.getElementById('eventAddress').value;
   const budget = document.getElementById('budget').value;
+
   var container = document.getElementById('post-container');
+  while (container.firstChild) container.removeChild(container.firstChild);
 
   // Iterate over the data and create HTML elements to display it
-  data.forEach(function (item) {
+  data.reverse().forEach(async function (item) {
     // Create a new paragraph element
+    let userData = await fetchUserById(item.user);
+    console.log(userData);
+    console.log(item.user);
     var itemElement = document.createElement('p');
     itemElement.classList.add('form__event');
 
@@ -119,7 +178,7 @@ function displayData(data) {
     var authorInfo = document.createElement('div');
     var authorName = document.createElement('h1');
 
-    authorName.textContent = 'Benjamin Leo';
+    authorName.textContent = userData?.username ?? null;
     var postTime = document.createElement('small');
     postTime.textContent = '2 hours ago';
     authorInfo.appendChild(authorName);
@@ -130,80 +189,75 @@ function displayData(data) {
     // itemElement.textContent =
 
     // Concatenate the event details
-    const eventName = document.getElementById('eventName').value;
-    const eventStartDate = document.getElementById('eventStartDate').value;
-    const eventEndDate = document.getElementById('eventEndDate').value;
-    const eventBrief = document.getElementById('eventBrief').value;
-    const days = calculateDays(eventStartDate, eventEndDate);
-    const eventAddress = document.getElementById('eventAddress').value;
-    const budget = document.getElementById('budget').value;
-    var container = document.getElementById('post-container');
+    // Create a new paragraph element
+    // var itemElement = document.createElement('div');
+    // itemElement.classList.add('form__event');
 
-    // Iterate over the data and create HTML elements to display it
-    data.forEach(function (item) {
-      // Create a new paragraph element
-      var itemElement = document.createElement('div');
-      itemElement.classList.add('form__event');
+    // Concatenate the event details
+    const content = `<p>Event Name: ${item.eventName} </p>
+                   <p>Event Start Date: ${item.eventStartDate}</p>
+                   <p>Event End Date: ${item.eventEndDate}</p>
+                   <p>Number of days: ${item.days}</p>
+                   <p>Event Details: ${item.eventBrief}</p>
+                   <p>Proposed Budget: ${item.budget}</p>
+                   <p>Event Address: ${item.eventAddress} </p>`;
 
-      // Concatenate the event details
-      const content = `<p>Event Name: ${eventName}</p>
-                   <p>Event Start Date: ${eventStartDate}</p>
-                   <p>Event End Date: ${eventEndDate}</p>
-                   <p>Number of days: ${days}</p>
-                   <p>Event Details: ${eventBrief}</p>
-                   <p>Proposed Budget: ${budget}</p>
-                   <p>Event Address: ${eventAddress}</p>`;
+    itemElement.innerHTML += content;
 
-      // Create accept and delete buttons
-      var acceptButton = document.createElement('button');
-      acceptButton.textContent = 'Accept';
-      acceptButton.classList.add('btn-accept');
-      acceptButton.style.backgroundColor = 'green';
-      acceptButton.style.color = 'white';
-      acceptButton.style.marginRight = '50px';
-      acceptButton.style.padding = '15px 30px';
-      acceptButton.style.borderRadius = '4px';
-      acceptButton.style.border = 'none';
-      acceptButton.style.cursor = 'pointer';
+    // Create edit and delete buttons
+    var buttons = document.createElement('div');
 
-      var deleteButton = document.createElement('button');
-      deleteButton.textContent = 'Delete';
-      deleteButton.classList.add('btn-delete');
-      deleteButton.style.backgroundColor = 'red';
-      deleteButton.style.color = 'white';
-      deleteButton.style.padding = '15px 30px';
-      deleteButton.style.borderRadius = '4px';
-      deleteButton.style.border = 'none';
-      deleteButton.style.cursor = 'pointer';
+    // Edit Button
+    var editButton = document.createElement('button');
+    editButton.textContent = 'Edit';
+    editButton.classList.add('btn-edit');
+    // editButton.id = 'editButton';
 
-      // Append buttons and content to the item container
-      itemElement.appendChild(acceptButton);
-      itemElement.appendChild(deleteButton);
-      itemElement.innerHTML += content;
+    // Delete Button
+    var deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete';
+    deleteButton.classList.add('btn-delete');
 
-      // Append the new element to the container
-      container.appendChild(itemElement);
-    });
+    // Append buttons and content to the item container
+    buttons.appendChild(editButton);
+    buttons.appendChild(deleteButton);
+    itemElement.appendChild(buttons);
 
-    closeModal();
+    console.log(itemElement);
+
+    // Append the new element to the container
+    container.appendChild(itemElement);
+    // editButton.addEventListener('click', handleEdit);
+    // function handleEdit() {
+    //   // Retrieve the event details from the form
+    //   const eventElement = document.querySelector('.form__event');
+    //   eventElement.remove();
+    //   openModal();
+    // }
   });
-  // function displayData(data) {
-  //   console.log(data);
-  //   var container = document.getElementById('post-container');
 
-  //   // Iterate over the data and create HTML elements to display it
-  //   data.forEach(function (item) {
-  //     var itemElement = document.createElement('p');
-  //     itemElement.textContent = item.full_address;
-  //     container.appendChild(itemElement);
-  //   });
-
-  //   closeModal();
-  // }
+  closeModal();
 }
+
+// function displayData(data) {
+//   console.log(data);
+//   var container = document.getElementById('post-container');
+
+//   // Iterate over the data and create HTML elements to display it
+//   data.forEach(function (item) {
+//     var itemElement = document.createElement('p');
+//     itemElement.textContent = item.full_address;
+//     container.appendChild(itemElement);
+//   });
+
+//   closeModal();
+// }
 
 async function postfeed(e) {
   const eventName = document.getElementById('eventName').value;
+  const eventStartDate = document.getElementById('eventStartDate').value;
+  const eventEndDate = document.getElementById('eventEndDate').value;
+  const days = calculateDays(eventStartDate, eventEndDate);
   const eventBrief = document.getElementById('eventBrief').value;
   const eventAddress = document.getElementById('eventAddress').value;
   const budget = document.getElementById('budget').value;
@@ -216,6 +270,9 @@ async function postfeed(e) {
     body: JSON.stringify({
       atoken: localStorage.getItem('token'),
       eventName,
+      eventStartDate,
+      eventEndDate,
+      days,
       eventBrief,
       eventAddress,
       budget,

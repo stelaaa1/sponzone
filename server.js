@@ -43,6 +43,28 @@ app.use('/', express.static(path.join(__dirname, 'sponsor')));
 //for that body-parser-middleware decode json body
 app.use(bodyParser.json());
 
+//Route to get form input in the server
+app.get('/api/getAllEvents', async (req, res) => {
+  try {
+    const data = await Event.find();
+    return res.json(data);
+  } catch (error) {
+    return res.status(400).json({ error: 'No data found' });
+  }
+});
+
+// api to fetch user by user id
+app.get('/api/getUserById/:id', async (req, res) => {
+  try {
+    const documentId = req.params.id;
+    console.log(documentId);
+    const userDetails = await User.findById(documentId);
+    console.log(userDetails);
+    return res.json(userDetails);
+  } catch (error) {
+    return res.status(400).json({ error: 'No data found' });
+  }
+});
 //async because there's multiple db calls
 
 //Route to register user in the server
@@ -191,7 +213,15 @@ app.post('/api/creatEvents', fetchuser, async (req, res) => {
 
   //destructuring req.body(obj)
   //pt-variable name for password
-  const { eventName, eventBrief, eventAddress, budget } = req.body;
+  const {
+    eventName,
+    eventStartDate,
+    eventEndDate,
+    days,
+    eventBrief,
+    eventAddress,
+    budget,
+  } = req.body;
 
   const { id } = req.user;
 
@@ -208,6 +238,9 @@ app.post('/api/creatEvents', fetchuser, async (req, res) => {
     const response = await Event.create({
       user: id,
       eventName,
+      eventStartDate,
+      eventEndDate,
+      days,
       eventBrief,
       eventAddress,
       budget,

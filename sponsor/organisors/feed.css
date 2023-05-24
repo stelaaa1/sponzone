@@ -149,6 +149,10 @@ a {
   justify-content: space-between;
 }
 
+.sidebar {
+  position: sticky;
+}
+
 .left-sidebar {
   flex-basis: 25%;
   align-self: flex-start;
@@ -316,6 +320,7 @@ a {
   text-align: center;
   margin: 12px 0;
   font-size: 12px;
+  border-radius: 5px;
 }
 
 .sidebar-ad img {
@@ -332,6 +337,12 @@ a {
 .sidebar-ad p {
   margin-top: 30px;
   margin-bottom: 10px;
+}
+
+.sidebar-ad a {
+  color: #ff0000; /* Set the text color to red */
+  text-decoration: none; /* Remove underline */
+  font-weight: bold; /* Make the text bold */
 }
 
 .sidebar-ad b {
@@ -375,9 +386,39 @@ a {
   margin-right: 4px;
 }
 
-.main-content {
-  flex-basis: 47%;
+.btn-edit,
+.btn-delete {
+  padding: 15px 30px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 15px;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
+
+.btn-edit {
+  margin-right: 90px;
+  background-color: #edeae8;
+  color: green;
+}
+
+.btn-delete {
+  background-color: #edeae8;
+  color: red;
+}
+
+.btn-edit:hover {
+  background-color: lightgreen;
+}
+
+.btn-delete:hover {
+  background-color: lightcoral;
+}
+
+/* .main-content {
+  flex-basis: 47%;
+} */
 
 .create-post {
   background: #fff;
@@ -487,7 +528,7 @@ form#eventForm {
   /* align-items: center; */
   max-width: 400px;
   margin: 0 auto;
-  
+
   border-radius: 2px;
   padding: 20px;
 }
@@ -495,19 +536,28 @@ form#eventForm {
 .event-form {
   display: inline-block;
   padding: 5px 10px;
-  
+
   width: fit-content; /* Adjust the width to fit the content */
   white-space: normal; /* Allow content wrapping within the box */
 }
 
-
 .form__event {
-  word-break: break-word;
-  background-color: white;
-  padding: 10px;
-  margin: 10px;
+  background: #fff;
+  padding: 20px 25px 10px;
+  margin: 10px 5px 35px;
   white-space: pre-line;
-  border: 15px solid rgb(150, 10, 201);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgb(150, 10, 201);
+  font-size: 18px;
+}
+
+.form__event p {
+  font-size: 18px;
+  line-height: 0.5;
+  margin: 10px;
+  font-weight: 600;
+  font-family: monospace;
 }
 
 /* .post {
@@ -592,10 +642,12 @@ form#eventForm {
 }
 
 .modal input {
-  padding: 0.7rem 1rem;
+  padding: 1rem;
+  color: #444;
   border: 1px solid #ddd;
   border-radius: 5px;
   font-size: 0.9em;
+  width: 94%;
 }
 
 .modal p {
@@ -612,13 +664,23 @@ button {
 
 .btn {
   display: inline-block;
-  padding: 0.8rem 1.4rem;
+  width: 100%;
+  padding: 10px 20px;
   font-weight: 700;
-  background-color: black;
-  color: white;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  text-transform: uppercase;
   border-radius: 5px;
   text-align: center;
   font-size: 1em;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+.btn:hover {
+  background-color: #2980b9;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 .btn-open {
@@ -662,27 +724,29 @@ label {
 
 input[type='text'],
 input[type='submit'] {
-  padding: 5px;
   width: 100%;
 }
 
 input[type='submit'] {
-  background-color: #4caf50;
+  background-color: purple;
   color: white;
   border: none;
   cursor: pointer;
 }
 
 input[type='submit']:hover {
-  background-color: #45a049;
+  color: purple;
+  background-color: rgba(151, 99, 151, 0.263);
 }
 
 /* Calendar icon styles */
 .calendar {
   position: relative;
   display: inline-block;
+  width: 100%;
 }
 
 .calendar input {
   padding-right: 3px;
+  width: 100%;
 }
